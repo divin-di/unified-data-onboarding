@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["txn_id", "user_id", "amount", "location", "merchant_id", "timestamp"],
+  "properties": {
+    "txn_id": { "type": "integer" },
+    "user_id": { "type": "integer" },
+    "amount": { "type": "number" },
+    "location": { "type": "string" },
+    "merchant_id": { "type": "integer" },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
