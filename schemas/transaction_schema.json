@@ -1,0 +1,8 @@
+{
+  "txn_id": "long",
+  "user_id": "long",
+  "amount": "double",
+  "location": "string",
+  "merchant_id": "long",
+  "timestamp": "string"
+}
