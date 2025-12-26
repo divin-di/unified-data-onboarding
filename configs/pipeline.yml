@@ -1,0 +1,18 @@
+pipeline:
+  name: batch_pipeline_spark
+  mode: batch
+
+input:
+  format: json
+  path: data/input/binance_events.json
+
+schema:
+  path: schemas/transaction_schema.json
+
+output:
+  bronze:
+    good: data/output/bronze/good
+    bad: data/output/bronze/bad
+
+spark:
+  app_name: UnifiedBatchIngestion
