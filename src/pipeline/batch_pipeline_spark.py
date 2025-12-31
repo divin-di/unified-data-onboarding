@@ -9,10 +9,10 @@ from utils.config_loader import load_config
 config = load_config("configs/pipeline.yml")
 
 spark = SparkSession.builder \
-    .appName(config["spark"]["app_name"]) \
+    .appName(config["bronze_layer"]["spark_app_name"]) \
     .getOrCreate()
 
-df = read_json( spark,config["input"]["path"])
+df = read_json( spark,config["bronze_layer"]["input"]["path"])
 
 with open(config["schema"]["path"]) as f:
     expected_schema = json.load(f)
