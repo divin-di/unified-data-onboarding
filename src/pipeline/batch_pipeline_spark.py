@@ -1,4 +1,6 @@
 import json
+import sys
+import yaml
 from pyspark.sql import SparkSession
 from readers.json_reader_spark import read_json
 from validation.schema_validator_spark import validate_schema
@@ -6,7 +8,13 @@ from validation.dq_validator import apply_dq_rules
 from writers.parquet_writer_spark import write_parquet
 from utils.config_loader import load_config
 
-config = load_config("configs/pipeline.yml")
+if len(sys.argv) > 1:
+    config_path = sys.argv[1]
+else:
+    config_path = "configs/pipeline.yml" # local fallback
+
+with open(config_path, 'r') as f:
+    config = yaml.safe_load(f)
 
 spark = SparkSession.builder \
     .appName(config["bronze_layer"]["spark_app_name"]) \
