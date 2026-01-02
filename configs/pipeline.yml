@@ -7,6 +7,8 @@ project:
 schema:
   path: schemas/transaction_schema.json
 
+env: test
+
 # Bronze Layer Configuration
 bronze_layer:
   pipeline_id: "batch_pipeline_spark"   # Identifies your Bronze script
