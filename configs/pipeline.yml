@@ -1,32 +1,35 @@
-
-project:
-  name: UnifiedDataOnboarding
-  mode: batch
-
-# Shared Schema Definition
-schema:
-  path: schemas/transaction_schema.json
-
 env: test
+datasets:
 
-# Bronze Layer Configuration
-bronze_layer:
-  pipeline_id: "batch_pipeline_spark"   # Identifies your Bronze script
-  spark_app_name: "UnifiedBatchIngestion"
-  input:
-    format: json
-    path: data/input/binance_events.json
-  output:
-    good: data/output/bronze/good
-    bad: data/output/bronze/bad
-    mode: "append"
+  - name: binance_data
+    project:
+      name: UnifiedDataOnboarding
+      mode: batch
 
-# Silver Layer Configuration
-silver_layer:
-  pipeline_id: "silver_pipeline_spark"  # Identifies your Silver script
-  spark_app_name: "SilverPipeline"
-  input:
-    path: data/output/bronze/good
-  output:
-    path: data/silver/transactions
-    mode: "overwrite"
+   # Shared Schema Definition
+    schema:
+     path: schemas/transaction_schema.json
+
+  
+
+   # Bronze Layer Configuration
+    bronze_layer:
+     pipeline_id: "batch_pipeline_spark"   # Identifies your Bronze script
+     spark_app_name: "UnifiedBatchIngestion"
+     input:
+      format: json
+      path: data/input/binance_events.json
+     output:
+      good: data/output/bronze/good
+      bad: data/output/bronze/bad
+      mode: "append"
+
+   # Silver Layer Configuration
+    silver_layer:
+     pipeline_id: "silver_pipeline_spark"  # Identifies your Silver script
+    spark_app_name: "SilverPipeline"
+    input:
+     path: data/output/bronze/good
+    output:
+     path: data/silver/transactions
+     mode: "overwrite"

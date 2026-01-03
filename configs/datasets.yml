@@ -1,0 +1,20 @@
+datasets:
+  - name: binance_transactions
+    source_type: batch_json
+    input_path: data/input/binance
+    schema: schemas/transaction_schema.json
+    dedup_keys:
+      - txn_id
+    dq_rules:
+      amount_positive: true
+    bronze_path: data/bronze/binance
+    silver_path: data/silver/transactions
+
+  - name: payments
+    source_type: batch_json
+    input_path: data/input/payments
+    schema: schemas/payment_schema.json
+    dedup_keys:
+      - payment_id
+    bronze_path: data/bronze/payments
+    silver_path: data/silver/payments
