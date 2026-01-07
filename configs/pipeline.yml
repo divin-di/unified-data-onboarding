@@ -1,5 +1,5 @@
 env: test
-datasets:
+datasets: 
   - name: binance_data
     project:
       name: UnifiedDataOnboarding
@@ -7,7 +7,7 @@ datasets:
 
    # Shared Schema Definition
     schema:
-     path: schemas/transaction_schema.json
+     path: /Workspace/Users/divinmr@gmail.com/unified-data-onboarding/schemas/transaction_schema.json
 
   
 
@@ -17,10 +17,10 @@ datasets:
       spark_app_name: "UnifiedBatchIngestion"
       input:
         format: json
-        path: data/input/binance_events.json
+        path: /mnt/raw/binance_events.json
       output:
-        good: data/output/bronze/good
-        bad: data/output/bronze/bad
+        good: /mnt/bronze/binance/good
+        bad: /mnt/bronze/binance/bad
         mode: "append"
 
    # Silver Layer Configuration
@@ -28,7 +28,7 @@ datasets:
       pipeline_id: "silver_pipeline_spark"  # Identifies your Silver script
       spark_app_name: "SilverPipeline"
       input:
-        path: data/output/bronze/good
+        path: /mnt/bronze/binance/good
       output:
-        path: data/silver/transactions
+        path: /mnt/silver/transactions
         mode: "overwrite"
