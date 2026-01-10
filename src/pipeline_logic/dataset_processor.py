@@ -3,15 +3,17 @@ import sys
 import os
 from pyspark.sql import functions as F
 
-# COACH TIP 1: Move environment setup OUTSIDE the function
+
 # Get the root of your git repo dynamically
 repo_root = "/Workspace/Users/divinmr@gmail.com/unified-data-onboarding"
 if repo_root not in sys.path:
     sys.path.append(repo_root)
 
-# COACH TIP 2: Import everything at the top (standard Python practice)
+#  Import everything at the top (standard Python practice)
 try:
     from src.readers.json_reader_spark import read_json
+    from src.readers.universal_reader import read_input
+
     from src.validation.schema_validator_spark import validate_schema
     from src.validation.dq_validator import apply_dq_rules
     from src.transforms.bronze_to_silver import bronze_to_silver
@@ -35,7 +37,7 @@ def process_layer(spark, dataset_config, run_id, env, layer="bronze"):
         input_path = cfg["input"]["path"]
         
         if layer == "bronze":
-            df = read_json(spark, input_path)
+            df = read_input(spark, dataset_config)
         else:
             df = spark.read.parquet(input_path)
             df = df.withColumn("ingestion_date", F.current_date()) \

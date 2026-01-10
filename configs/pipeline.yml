@@ -18,6 +18,11 @@ datasets:
       input:
         format: json
         path: /mnt/raw/binance_events.json
+        options:
+          header: "true"         # Tells Spark the first row is columns
+          delimiter: ","        # Explicitly define separator
+          mode: "PERMISSIVE"    # Handles corrupt records gracefully
+          columnNameOfCorruptRecord: "_corrupt_record"
       output:
         good: /mnt/bronze/binance/good
         bad: /mnt/bronze/binance/bad
