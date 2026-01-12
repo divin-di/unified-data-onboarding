@@ -1,9 +1,0 @@
-env: test
-
-paths:
-  bronze_good: "abfss://raw-test@storageaccount.dfs.core.windows.net/bronze/binance/good"
-  bronze_bad: "abfss://raw-test@storageaccount.dfs.core.windows.net/bronze/binance/bad"
-  silver: "abfss://curated-test@storageaccount.dfs.core.windows.net/silver/transactions"
-
-write_mode:
-  silver: overwrite
