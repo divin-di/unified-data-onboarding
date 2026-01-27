@@ -10,7 +10,7 @@ The Unified Data Onboarding Platform is a configurable, The project ingests real
   - Environment portability (local → dev → prod)
   - Observability and auditability
   
-    1.2 High-Level Architecture
+1.2 High-Level Architecture
 
 Source Systems → ADLS (Raw) → Databricks (Bronze) → Databricks (Silver)
                            ↘ Metadata Store
