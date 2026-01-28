@@ -9,6 +9,7 @@ The Unified Data Onboarding Platform is a configurable, The project ingests real
   - Isolation of bad data without pipeline failure
   - Environment portability (local → dev → prod)
   - Observability and auditability
+  - Analytics ready data
   
 1.2 High-Level Architecture
 
